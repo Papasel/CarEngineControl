@@ -1,0 +1,344 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
+int row1 = 6; // grammh 1h  
+int row2 = 5; // grammh 2h
+int row3 = 4; // grammh 3h
+int row4 = 3; // grammh 4h
+int col3 = 0; // sthlh 3h
+int col2 = 1; // sthlh 2h
+int col1 = 2; // sthlh 1h
+int posit = 0; // counter kwdikou kwnstantinos
+int posita = 0;// counter kwdikou panagiwths 
+char key; // pithanh xrhsh tou
+int s = 0; // deuterolepta
+int m = 0; // lepta
+int h = 0; // wres
+int i = 0; // telesths isothtas
+
+void setup() 
+{
+pinMode(row1, INPUT_PULLUP);
+pinMode(row2, INPUT_PULLUP);
+pinMode(row3, INPUT_PULLUP);
+pinMode(row4, INPUT_PULLUP);
+pinMode(col1, OUTPUT);
+pinMode(col2, OUTPUT);
+pinMode(col3, OUTPUT);
+pinMode(13, OUTPUT);
+digitalWrite(13, HIGH);
+lcd.begin(16, 2);
+lcd.setCursor(2, 0);
+lcd.print("C");
+delay(100);
+lcd.print("a");
+delay(100);
+lcd.print("r");
+delay(100);
+lcd.print("p");
+delay(100);
+lcd.print("e");
+lcd.print(" ");
+delay(100);
+lcd.print("d");
+delay(100);
+lcd.print("i");
+delay(100);
+lcd.print("e");
+delay(100);
+lcd.print("m");
+delay(2000);
+lcd.clear();
+lcd.print("Dwste kwdiko:");
+delay(2000);
+lcd.clear();
+lcd.setCursor(6, 0);
+}
+
+void loop() 
+{
+digitalWrite(col1, LOW); digitalWrite(col2, HIGH); digitalWrite(col3, HIGH); 
+if (digitalRead(row1) == LOW)
+{
+key= '1';
+lcd.print("*");
+posit = 10;
+if (posita == 1)
+{
+posita++;
+}
+else
+{
+posita = 10;
+}
+delay(60);
+}
+if (digitalRead(row2) == LOW)
+{
+key= '4';
+lcd.print("*");
+posita = 10;
+if (posit == 1)
+{
+posit++;
+}
+else
+{
+posit = 10;
+}
+delay(60);
+}
+if (digitalRead(row3) == LOW)
+{
+key= '7';
+lcd.print("*");
+posit = 10;
+posita = 10;
+delay(60);
+}
+if (digitalRead(row4) == LOW)
+{
+key= '*';
+lcd.clear();
+lcd.print("Dwste kwdiko:");
+delay(1000);
+lcd.clear();
+posit = 0;
+posita = 0;
+lcd.setCursor(6, 0);
+}
+delay(40);
+digitalWrite(col1, HIGH); digitalWrite(col2, LOW); digitalWrite(col3, HIGH);
+if (digitalRead(row1) == LOW)
+{
+key= '2';
+lcd.print("*");
+posita = 10;
+if (posit == 3)
+{
+posit++;
+}
+else
+{
+posit = 10;
+}
+delay(60);
+}
+if (digitalRead(row2) == LOW)
+{
+key= '5';
+lcd.print("*");
+posita = 10;
+if (posit == 0)
+{
+posit++;
+}
+else
+{
+posit = 10;
+}
+delay(60);
+}
+if (digitalRead(row3) == LOW)
+{
+key= '8';
+lcd.print("*");
+posit = 10;
+posita = 10;
+delay(60);
+}
+if (digitalRead(row4) == LOW)
+{
+key= '0';
+lcd.print("*");
+posit = 10;
+if (posita == 0)
+{
+posita++;
+}
+else if (posita == 2)
+{
+posita++;
+}
+else if (posita == 3)
+{
+posita++;
+}
+else if (posita == 1)
+{
+posita = 10;
+}
+delay(60);
+}
+delay(40);
+digitalWrite(col1, HIGH); digitalWrite(col2, HIGH); digitalWrite(col3, LOW);
+if (digitalRead(row1) == LOW)
+{
+key= '3';
+lcd.print("*");
+posit = 10;
+posita =10;
+}
+if (digitalRead(row2) == LOW)
+{
+key= '6';
+lcd.print("*");
+posit = 10;
+posita = 10;
+delay(60);
+}
+if (digitalRead(row3) == LOW)
+{
+key= '9';
+lcd.print("*");
+posita = 10;
+if (posit == 2)
+{
+posit++;
+}
+else
+{
+posit = 10;
+}
+delay(60);
+}
+if (digitalRead(row4) == LOW)
+{
+key= '#';
+lcd.clear();
+pinMode(13, OUTPUT);
+
+if ((posita == 4) || (posit == 4))
+{
+digitalWrite(13, LOW);
+lcd.print("Kwdikos dektos");
+delay(1000);
+lcd.clear();
+if (posita == 4)
+{
+lcd.print("Kalwshr8es");
+lcd.setCursor(0, 1);
+lcd.print("Panagiwths");
+delay(2000);
+lcd.clear();
+}
+else if (posit == 4)
+{
+lcd.print("Kalwshr8es");
+lcd.setCursor(0, 1);
+lcd.print("Kwnstantinos");
+delay(2000);
+lcd.clear();
+}
+lcd.print("Energo systhma");
+delay(3000);
+lcd.clear();
+digitalWrite(13, HIGH);
+lcd.print("Anenergo systhma");
+delay(1000);
+lcd.clear();
+lcd.print("kalh diadromh...");
+lcd.setCursor(1, 1);
+lcd.print(h);
+lcd.setCursor(2, 1);
+lcd.print(":");
+lcd.setCursor(4, 1);
+lcd.print(m);
+lcd.setCursor(5, 1);
+lcd.print(":");
+lcd.setCursor(7, 1);
+lcd.print(s);
+i = 0;
+while (i == 0)
+{
+digitalWrite(col1, LOW); digitalWrite(col2, HIGH); digitalWrite(col3, HIGH);
+delay(1000);
+if(s <= 9)
+{
+lcd.setCursor(7, 1);
+lcd.print(s);
+}
+else if (s > 9)
+{
+lcd.setCursor(6, 1);
+lcd.print(s);
+}
+if (s > 59)
+{
+m++;
+s = 0;
+if (m <= 9)
+{
+lcd.setCursor(4, 1);
+lcd.print(m);
+}
+else if (m > 9)
+{
+lcd.setCursor(3, 1);
+lcd.print(m);
+}
+lcd.setCursor(6, 1);
+lcd.print("  ");
+lcd.setCursor(7, 1);
+lcd.print(s);
+}
+if (m > 59)
+{
+h++;
+m = 0;
+if (h <= 9)
+{
+lcd.setCursor(1, 1);
+lcd.print(h);
+}
+if(h > 9)
+{
+lcd.setCursor(0, 1);
+lcd.print(h);
+}
+lcd.setCursor(3, 1);
+lcd.print("  ");
+lcd.setCursor(4, 1);
+lcd.print(m);
+}
+s++;
+if (digitalRead(row4) == LOW)
+{
+posita = 0;
+posit = 0;
+i = 1;
+s = 0;
+h = 0;
+m = 0;
+lcd.clear();
+lcd.print("Dwste kwdiko:");
+delay(1500);
+lcd.clear();
+lcd.setCursor(6, 0);
+}
+}
+}
+else if (posita == 0)
+{
+lcd.print("De dwsate kwdiko");
+delay(1000);
+lcd.clear();
+lcd.print("Dwste kwdiko:");
+delay(1000);
+lcd.clear();
+lcd.setCursor(6, 0);
+}
+else
+{
+lcd.print("Lathos Kwdikos");
+delay(2000);
+lcd.clear();
+posita = 0;
+lcd.print("Dwste kwdiko:");
+delay(1000);
+lcd.clear();
+lcd.setCursor(6, 0);
+}
+delay(40);
+}
+}
