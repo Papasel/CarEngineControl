@@ -230,13 +230,6 @@ lcd.print("Kwnstantinos");
 delay(2000);
 lcd.clear();
 }
-lcd.print("Energo systhma");
-delay(3000);
-lcd.clear();
-digitalWrite(13, HIGH);
-lcd.print("Anenergo systhma");
-delay(1000);
-lcd.clear();
 lcd.print("kalh diadromh...");
 lcd.setCursor(1, 1);
 lcd.print(h);
@@ -304,6 +297,7 @@ lcd.print(m);
 s++;
 if (digitalRead(row4) == LOW)
 {
+digitalWrite(13, HIGH);
 posita = 0;
 posit = 0;
 i = 1;
