@@ -212,7 +212,7 @@ if ((posita == 4) || (posit == 4))
 {
 digitalWrite(13, LOW);
 lcd.print("Kwdikos dektos");
-delay(1000);
+delay(2000);
 lcd.clear();
 if (posita == 4)
 {
